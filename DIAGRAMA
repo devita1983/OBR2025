@@ -1,86 +1,109 @@
 1. Ligação dos Sensores de Linha (Infravermelhos)
+Observação: Verifique a quantidade de sensores necessária.
 
-// OBSERVE QUANTO A QUANTIDADE DE SENSORES
-
-SENSOR INFRAVERMELHO ESQUERDO:
+Sensor Infravermelho Esquerdo
 VCC → 5V Arduino
+
 GND → GND Arduino
+
 OUT → A0 Arduino
 
-SENSOR INFRAVERMELHO DIREITO:
+Sensor Infravermelho Direito
 VCC → 5V Arduino
+
 GND → GND Arduino
+
 OUT → A1 Arduino
 
-2. Ligação Sensor Ultrassônico HC-SR04
-
-HC-SR04:
+2. Ligação do Sensor Ultrassônico HC-SR04
 VCC → 5V Arduino
+
 Trig → D12 Arduino
+
 Echo → D11 Arduino
+
 GND → GND Arduino
 
-3. Ligação Sensor de Cor TCS230/320
+3. Ligação do Sensor de Cor TCS230/320
+Observação: Podem ser usados de 2 a 4 sensores em barramento.
 
-TCS230: // LEMBREM-SE QUE VÃO USAR DE DOIS A QUATRO SENSORES DESSE, ENTÃO TERÃO QUE LIGAR EM BARRAMENTO:) 
 VCC → 5V Arduino
+
 GND → GND Arduino
+
 S0 → D2 Arduino
+
 S1 → D3 Arduino
+
 S2 → D4 Arduino
+
 S3 → D7 Arduino
+
 OUT → D8 Arduino
 
-4. L298N:
-+12V → Bateria 9V
+4. Ligação da Ponte H L298N
+Conexões de Alimentação:
++12V → Bateria 9V (+)
+
 GND → GND Arduino e GND Bateria
-+5V → Não conectar (usar jumper) 
-ENA → Não conectar (usar jumper)            
+
++5V → Não conectar (usar jumper)
+
+Conexões de Controle:
+ENA → Não conectar (usar jumper)
+
 IN1 → D5 Arduino (Motor Esquerdo Frente)
+
 IN2 → D6 Arduino (Motor Esquerdo Trás)
+
 IN3 → D9 Arduino (Motor Direito Frente)
+
 IN4 → D10 Arduino (Motor Direito Trás)
+
 ENB → Não conectar (usar jumper)
 
-// ATENÇÃO AS LINHAS 37 E 38 DESSE ARQUIVO JOVENS PADAWANS: // eSSE PINO FORNECE 5v DE SAÍDA QUE PODE ALIMENTAR O ARDUINO,
-// Quando você coloca um jumper no conector +5V da L298N, esta ativando o regulador de tensão interno do módulo
-// Se você alimentar a ponte H com mais de 9V (ex: 12V), pode usar este 5V para alimentar o arduino
-// No caso de vocês, como estão usando bateria de 9v  é mais seguro alimentar o arduino separadamente via USB para dev
-
-ENA - Não Conectar (usar jumper - o que isso significa?)
-// Com o jumper colocado, voce habilita permanentemente os motores
-// Se removero jumper, pode controlar via PWM (conectar a um pino digital do arduino, quando vc nao remove o jumper)
-// quando remove o jumper, o robo fica louco! louco louco louco. Entao como no projeto, PWM direto nos pinos IN1-IN4,
-// vão manter ENA e ENB com jumpers é a configuração mais simples; 
-
-[L298N]
+Diagrama Simplificado da L298N:
+plaintext
 +12V ────●═══════ Bateria 9V+
-       │
-       └─ Jumper entre +12V e +5V (regulador interno)
-       
-ENA ────●═══════ Jumper instalado (motor sempre habilitado) // se quiser controlar digitalmente JUMPER, se for digital tire
+        │
+        └─ Jumper entre +12V e +5V (regulador interno)
+ENA ────●═══════ Jumper instalado (motor sempre habilitado)
 ENB ────●═══════ Jumper instalado
+Observações Importantes:
+Nunca alimente o Arduino pelo pino +5V da L298N e USB simultaneamente (risco de queimar o Arduino).
 
-Cuidados Importantes:
-Nunca alimente o Arduino pelo pino +5V da L298N e USB simultaneamente (por isso tenho certeza que queimaram ARDUINO kkkk)
+Verifique se os jumpers em ENA/ENB estão bem conectados.
 
-Verifique se o jumper está bem conectado nos pinos ENA/ENB
+Se os motores não girarem, confira primeiro os jumpers.
 
-Se os motores não girarem, confira primeiro estes jumpers
-
-5.  Ligação dos Motores DC
-
-MOTOR ESQUERDO:
+5. Ligação dos Motores DC
+Motor Esquerdo:
 Fio 1 → OUT1 Ponte H
+
 Fio 2 → OUT2 Ponte H
 
-MOTOR DIREITO:
+Motor Direito:
 Fio 1 → OUT3 Ponte H
+
 Fio 2 → OUT4 Ponte H
 
-6. BATERIA 9V:
-Positivo → +12V Ponte H
-Negativo → GND Ponte H
+6. Alimentação (Bateria 9V)
+Positivo (+): +12V Ponte H
 
-ARDUINO:
-VIN → Não conectar (alimentado via USB durante desenvolvimento)
+Negativo (-): GND Ponte H
+
+Arduino:
+VIN: Não conectar (alimentado via USB durante desenvolvimento).
+
+Dicas Adicionais:
+Jumpers ENA/ENB:
+
+Com jumper: Motores sempre habilitados (configuração mais simples).
+
+Sem jumper: Controle via PWM (conectar a pinos digitais do Arduino).
+
+Regulador de 5V da L298N:
+
+Se a ponte H for alimentada com mais de 9V (ex.: 12V), pode-se usar o +5V da L298N para alimentar o Arduino.
+
+Para bateria de 9V, recomenda-se alimentar o Arduino separadamente (via USB).
