@@ -1,40 +1,69 @@
+📌 Guia de Estrutura do Projeto & Dicas para a Equipe
+🔧 Organização do Código Fonte (Modular)
+(Recomendação para projetos profissionais de OBR)
 
-// Aqui vocês vão colocar todas as duvidas e tutorial, acredito que vocês não sabem usar git! Mas vou atualizando por lá
+/ROBO_OBR/  
+├── ROBO_OBR.ino              # Arquivo principal (antes "segueLinha.ino")  
+├── config.h                  # Configurações globais (pinos, constantes)  
+├── motores.h                 # Interface do controle de motores  
+├── motores.cpp               # Implementação dos motores (L298N)  
+├── sensores.h                # Interface dos sensores (linha, cor, ultrassom)  
+├── sensores.cpp              # Implementação dos sensores  
+├── estrategia.h              # Lógica de competição (obstáculos, curvas)  
+└── estrategia.cpp            # Implementação da estratégia  
 
-// ESTRUTURA DE ARQUIVOS RECOMENDADO
+ROBO_OBR/  
+│
+├── 📜 ROBO_OBR.ino            (Cérebro do robô, onde tudo começa)  
+├── 📜 config.h                (A "lista de contatos" do robô: pinos e constantes)  
+├── 📜 motores.h/cpp           (Controle da L298N - "pernas do robô")  
+├── 📜 sensores.h/cpp          (Olhos e ouvidos: sensores de linha, cor, ultrassom)  
+└── 📜 estrategia.h/cpp        (Cérebro estratégico: obstáculos, curvas 90° verdes, etc.)
 
-              // ESTA IDENTIFICADO NO PROJETO COMO segueLinha.ino é a raiz do projeto. Esses tipos de código devem
-             // ser modulares, senão não funciona. 
+💡 Como Adicionar Novos Módulos
+(Exemplo: sensor TCS230 de cor)
 
-             // veja abaixo
+Crie os arquivos:
 
-             /SeuProjeto/
-  ├── SeuProjeto.ino          (Arquivo principal)
-  ├── config.h                (Configurações e definições)
-  ├── motores.h / motores.cpp (Controle dos motores)
-  ├── sensores.h / sensores.cpp (Leitura dos sensores)
-  └── estrategia.h / estrategia.cpp (Lógica de competição)
+sensorCor.h → Declaração das funções (ex: lerCor(), calibrarSensor()).
 
-Como Adicionar Novos Módulos
-Criar um novo recurso (ex: leds.h/leds.cpp para controle de LEDs) // aqui no caso vocês vão colocar o sensor 
-                                                                // que identifica as cores, sensor tsc230
+sensorCor.cpp → Implementação do código.
 
-Declarar as funções no arquivo .h   // As funçõe sempre no arquivo .h
+Inclua no arquivo principal:
 
-Implementar as funções no arquivo .cpp  // aqui vocês implemental a função do arquivo .h
+#include "sensorCor.h"  // Adicionado ao ROBO_OBR.ino
 
-Incluir o módulo no arquivo principal 
+Adicione na Arduino IDE:
 
-Como Implementar no Arduino IDE
-Crie uma nova pasta para seu projeto
+Sketch > Add File para incluir .h e .cpp.
 
-Crie o arquivo principal .ino
+⚠️ Atenção aos Arquivos Críticos
+estrategia.h / estrategia.cpp:
 
-Para cada módulo, crie um par de arquivos .h e .cpp
+Aqui vocês programam obstáculos, curvas de 90° (verde) e lógica de competição.
 
-Na Arduino IDE, use o menu "Sketch > Add File" para adicionar todos os arquivOS
-Certifique-se de que todos os #include estão corretos
+Exemplo de função:
 
-// FIQUEM ATENTOS AO ESTRATEGIA.H E ESTRATEGIA.CPP, É NESSES ARQUIVOS QUE VOCÊS VÃO PROGRAMAR OS OBSCAULOS COMO
-// OBSTACULOS A FRENTE, VIRAR ESQUERDA OU DIREITA NOS ANGULOS DEV 90º (VERDE
+void desviarObstaculo() {  
+  if (ultrassom.distancia < 15) {  
+    motores.virarEsquerda(90);  
+  }  
+}
 
+📌 Passos para Implementação no Arduino IDE
+Crie uma pasta para o projeto (ex: ROBO_OBR).
+
+Adicione o arquivo principal (ROBO_OBR.ino).
+
+Para cada módulo:
+
+Crie o par .h (cabeçalho) + .cpp (implementação).
+
+Use #include "arquivo.h" no arquivo principal.
+
+Verifique os #include:
+
+Garanta que todos os caminhos estão corretos (ex: #include "motores.h").
+
+// Falae galera! Deixaram vocês na mão? Ta vendo a falta que faz um profissional gabaritado? kkk
+// relaxa, só seguir ....
