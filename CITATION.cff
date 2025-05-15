@@ -1,0 +1,12 @@
+
+cff-version: 1.2.0
+message: "OBR Project - ."
+authors:
+  - given-names: "Luis Claudio"
+    family-names: "De Vita"
+    affiliation: "Ex OED (MATADOR) - DEE/CTA"
+title: "ROBO_OBR: Robô Seguidor de Linha para OBR"
+version: 1.0
+doi: 10.5281/zenodo.XXXXXX  # Opcional: gere um DOI no Zenodo
+date-released: 2025-05-15
+url: "https://github.com/devita1983/OBR2025.git"
