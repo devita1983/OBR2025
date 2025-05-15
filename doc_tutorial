@@ -1,0 +1,40 @@
+
+// Aqui vocês vão colocar todas as duvidas e tutorial, acredito que vocês não sabem usar git! Mas vou atualizando por lá
+
+// ESTRUTURA DE ARQUIVOS RECOMENDADO
+
+              // ESTA IDENTIFICADO NO PROJETO COMO segueLinha.ino é a raiz do projeto. Esses tipos de código devem
+             // ser modulares, senão não funciona. 
+
+             // veja abaixo
+
+             /SeuProjeto/
+  ├── SeuProjeto.ino          (Arquivo principal)
+  ├── config.h                (Configurações e definições)
+  ├── motores.h / motores.cpp (Controle dos motores)
+  ├── sensores.h / sensores.cpp (Leitura dos sensores)
+  └── estrategia.h / estrategia.cpp (Lógica de competição)
+
+Como Adicionar Novos Módulos
+Criar um novo recurso (ex: leds.h/leds.cpp para controle de LEDs) // aqui no caso vocês vão colocar o sensor 
+                                                                // que identifica as cores, sensor tsc230
+
+Declarar as funções no arquivo .h   // As funçõe sempre no arquivo .h
+
+Implementar as funções no arquivo .cpp  // aqui vocês implemental a função do arquivo .h
+
+Incluir o módulo no arquivo principal 
+
+Como Implementar no Arduino IDE
+Crie uma nova pasta para seu projeto
+
+Crie o arquivo principal .ino
+
+Para cada módulo, crie um par de arquivos .h e .cpp
+
+Na Arduino IDE, use o menu "Sketch > Add File" para adicionar todos os arquivOS
+Certifique-se de que todos os #include estão corretos
+
+// FIQUEM ATENTOS AO ESTRATEGIA.H E ESTRATEGIA.CPP, É NESSES ARQUIVOS QUE VOCÊS VÃO PROGRAMAR OS OBSCAULOS COMO
+// OBSTACULOS A FRENTE, VIRAR ESQUERDA OU DIREITA NOS ANGULOS DEV 90º (VERDE
+
